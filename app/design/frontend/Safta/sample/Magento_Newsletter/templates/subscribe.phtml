@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+
+?>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4 col-sm-3 col-md-2 offset-md-1">
+            <img class="w-100" src="http://magento.loc/static/version1530347833/frontend/Safta/sample/en_US/images/shtamp.png" alt="">
+        </div>
+        <div class="col-8 col-sm-4 col-md-3">
+            <h2 class="newsl">Newsletter!</h2>
+        </div>
+        <div class="col-12 col-sm-5 col-md-4">
+
+            <form class="forml"
+                novalidate
+                action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
+                method="post"
+                data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+                id="newsletter-validate-detail">
+                <div class="form-group">
+                    <input name="email" type="email" id="newsletter"
+                                placeholder="<?= $block->escapeHtmlAttr(__('Enter your email address')) ?>"
+                                data-validate="{required:true, 'validate-email':true}"/>
+
+                </div>
+                <button class="btn float-right" title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>" type="submit">
+                    <img src="http://magento.loc/static/version1530347833/frontend/Safta/sample/en_US/images/ok.png" alt="">
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>

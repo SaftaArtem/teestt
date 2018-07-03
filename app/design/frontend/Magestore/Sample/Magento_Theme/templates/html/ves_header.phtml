@@ -1,0 +1,16 @@
+<div class="row custom-nav">
+    <div class="col-12 col-md-10 offset-md-1">
+        <nav class="navbar navbar-expand-lg d-lg-flex align-items-lg-end">
+        <?php echo $this->getChildHtml("logo"); ?>
+        <button id="nav-bar-toggler" type="button">
+            <span class="nav-bar-toggler-icon"></span>
+            <span class="nav-bar-toggler-icon"></span>
+            <span class="nav-bar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navbarNav">
+            <?php echo $this->getChildHtml('catalog.topnav'); ?>
+            <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('fasony-menutop')->toHtml();?>
+        </div>
+    </div>
+</div>
+

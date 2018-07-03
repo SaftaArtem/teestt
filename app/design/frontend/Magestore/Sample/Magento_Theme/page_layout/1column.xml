@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @copyright   Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_layout.xsd">
+    <update handle="empty"/>
+    <referenceContainer name="root">
+        <container name="site.header" as="site.header" label="Header Container" htmlTag="header" htmlClass="site-header" before="-"/>
+        <container name="banner" as="banner" label="Banner" htmlTag="section" htmlClass="banner" after="site.header"/>
+        <container name="pop.product" as="pop.product" label="Pop Product" htmlTag="section" htmlClass="pop-product" after="banner"/>
+        <container name="collections" as="collections" label="Collections" htmlTag="section" htmlClass="collections" after="pop.product"/>
+        <container name="newsletter" as="newsletter" label="Newsletter" htmlTag="section" htmlClass="newsletter" after="collections"/>
+        <container name="instagram" as="instagram" label="Instagram" htmlTag="section" htmlClass="instagram" after="newsletter"/>
+        <container name="connect" as="connect" label="Connect" htmlTag="section" htmlClass="connect" after="instagram"/>
+        <container name="site.footer" as="site.footer" label="Site Footer" htmlTag="section" htmlClass="site-footer" after="connect"/>
+    </referenceContainer>
+</layout>

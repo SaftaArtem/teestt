@@ -1,0 +1,8 @@
+<a class="logo" href="<?= $block->getUrl('') ?>">
+
+    <img src="<?= /* @escapeNotVerified */ $block->getLogoSrc() ?>"
+         alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+         <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
+         <?= $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
+    />
+</a>

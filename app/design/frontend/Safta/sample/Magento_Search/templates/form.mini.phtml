@@ -1,0 +1,46 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $helper \Magento\Search\Helper\Data */
+$helper = $this->helper('Magento\Search\Helper\Data');
+?>
+<div class="col col-lg-10 offset-lg-1 d-sm-flex justify-content-between align-items-center">
+    <form class="form-inline d-flex justify-content-between">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn" type="submit"><img src="http://magento.loc/static/version1530347833/frontend/Safta/sample/en_US/images/search.png" alt=""></button>
+    </form>
+    <div class="header_cart no-mobile">
+        <div class="cart_top icon no-mobile cartClick" link="http://verypoolish.itservices.in.ua/en/checkout/cart/">
+            <div class="cart_top_qty cart_qty_container"><i class="fa fa-shopping-cart" aria-hidden="true"></i>0item</div>
+            <div class="dropdown" style="display:none">
+                <div class="dropdown-arrow"></div>
+                <div class="dropdown-content cart-content-container-helper">
+                    <div class="block block-cart">
+                        <div class="block-content">
+                            <ol id="cart-sidebar" class="mini-products-list"></ol>
+                            <p class="subtotal">
+                                <span class="label">Total Amount:</span> <span class="price"><span class="price">€0.00</span></span>
+                            </p>
+                            <div class="actions">
+                                <button type="button" title="Checkout" class="button button_dark" onclick="setLocation('http://verypoolish.itservices.in.ua/en/onestepcheckout/')">
+                                    <span><span>Checkout</span></span>
+                                </button>
+                            </div>
+                            <div class="price-info">
+                                All prices incl. VAT. excl. <a data-mfp-src="#shippingCostPopup" href="http://verypoolish.itservices.in.ua/en/lieferung" class="openPopupInline">Shipping Costs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
