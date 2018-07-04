@@ -1,6 +1,6 @@
 <?php
-namespace Pulsestorm\ToDoCrud\Controller\index;
-class index extends \Magento\Framework\App\Action\Action
+namespace Pulsestorm\ToDoCrud\Controller\Index;
+class Index extends \Magento\Framework\App\Action\Action
 {
 
     protected $resultPageFactory;

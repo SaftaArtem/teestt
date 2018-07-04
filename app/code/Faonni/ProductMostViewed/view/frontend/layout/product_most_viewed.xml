@@ -12,7 +12,7 @@
 	Handle product most viewed
 	-->			
 	<body>
-        <referenceContainer name="content">
+        <referenceContainer name="pop.product">
             <block class="Faonni\ProductMostViewed\Block\ProductList" name="catalog.product.most.viewed" template="Faonni_ProductMostViewed::product/list/items.phtml" before="-">
                 <arguments>
                     <argument name="type" xsi:type="string">most-viewed</argument>

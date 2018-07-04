@@ -14,6 +14,6 @@ class Link extends \Magento\Framework\View\Element\Html\Link
         if (false != $this->getTemplate()) {
             return parent::_toHtml();
         }
-        return '<button type="button" class="btn" data-toggle="modal" data-target="#register" data-whatever="@fat"><a ' . $this->getLinkAttributes() . ' >' . $this->escapeHtml($this->getLabel()) . '</a></button>';
+        return '<button type="button" class="btn" data-toggle="modal" data-target="#register" data-whatever="@fat">' . $this->escapeHtml($this->getLabel()) . '</button>';
     }
 }

@@ -14,73 +14,81 @@ $showCart  = true;
 $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
 ?>
 <?php if ($block->getItems()->getSize()): ?>
-<div class="block <?php /* @escapeNotVerified */ echo $class ?>">
-    <div class="block-title title">
-        <strong id="block-<?php /* @escapeNotVerified */ echo $class ?>-heading" role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo $block->getTitle() ?></strong>
-    </div>
-    <div class="block-content content" aria-labelledby="block-<?php /* @escapeNotVerified */ echo $class ?>-heading">
-        <div class="products wrapper grid products-grid products-<?php /* @escapeNotVerified */ echo $class ?>">
-            <ol class="products list items product-items">
-                <?php $iterator = 1 ?>
-                <?php foreach ($items as $_item): ?>
-                <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>                
-                <div class="product-item-info">
-                    <?php /* @escapeNotVerified */ echo '<!-- ' . $image . '-->' ?>
-                    <a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
-                        <?php echo $block->getImage($_item, $image)->toHtml() ?>
-                    </a>
-                    <div class="product details product-item-details">
-                        <strong class="product name product-item-name"><a class="product-item-link" title="<?php echo $block->escapeHtml($_item->getName()) ?>" href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>">
-                            <?php echo $block->escapeHtml($_item->getName()) ?></a>
-                        </strong>
-                        <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item) ?>
-                            <?php if ($templateType): ?>
-                                <?php echo $block->getReviewsSummaryHtml($_item, $templateType) ?>
-                            <?php endif ?>
-
-                            <?php if ($showAddTo || $showCart): ?>
-                                <div class="product actions product-item-actions">
-                                    <?php if ($showCart): ?>
-                                        <div class="actions-primary">
-                                            <?php if ($_item->isSaleable()): ?>
-                                                <?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
-                                                    <button class="action tocart primary" data-mage-init='{"redirectUrl": {"url": "<?php /* @escapeNotVerified */ echo $block->getAddToCartUrl($_item) ?>"}}' type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
-                                                        <span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
-                                                    </button>
-                                                <?php else: ?>
-                                                    <?php $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
-                                                    $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
-                                                    ?>
-                                                    <button class="action tocart primary"
-                                                            data-post='<?php /* @escapeNotVerified */ echo $postData ?>'
-                                                            type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
-                                                        <span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
-                                                    </button>
-                                                <?php endif ?>
-                                            <?php else: ?>
-                                                <?php if ($_item->getIsSalable()): ?>
-                                                    <div class="stock available"><span><?php /* @escapeNotVerified */ echo __('In stock') ?></span></div>
-                                                <?php else: ?>
-                                                    <div class="stock unavailable"><span><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span></div>
-                                                <?php endif ?>
-                                            <?php endif ?>
-                                        </div>
-                                    <?php endif ?>
-
-                                    <?php if ($showAddTo): ?>
-                                        <div class="secondary-addto-links actions-secondary" data-role="add-to-links">
-                                            <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
-                                                <?php echo $addToBlock->setProduct($_item)->getChildHtml() ?>
-                                            <?php endif ?>
-                                        </div>
-                                    <?php endif ?>
-                                </div>
-                            <?php endif ?>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-10 offset-md-1">
+            <div class="row sub-menu">
+                <div class="col d-flex justify-content-end">
+                    <ul class="sub-menu-list d-block d-sm-flex justify-content-between">
+                        <li><a href="#">Empfohlen</a></li>
+                        <li><a href="#">Neue artikel</a></li>
+                        <li><a href="#">Reduziert</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div class="row pager-products">
+                    <div class="col d-flex justify-content-between">
+                        <h3><?php /* @escapeNotVerified */ echo $block->getTitle() ?></h3>
+                        <div class="pop-navigation">
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="arrow left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <ol class="carousel-indicators prod">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">1</li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1">2</li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2">3</li>
+                            </ol>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="arrow right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
                     </div>
-                    <?php echo($iterator == count($items)+1) ? '</li>' : '' ?>
-                <?php endforeach ?>
-            </ol>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+
+                        <?php $iterator = 1 ?>
+                        <?php foreach ($items as $_item): ?>
+                            <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<div class="col-md-4 interior">' : '</div><div class="col-md-4 interior">' ?>
+                                <?php /* @escapeNotVerified */ echo '<!-- ' . $image . '-->' ?>
+                                <a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product card">
+                                    <?php echo $block->getImage($_item, $image)->toHtml() ?>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <h3 class="card-title">
+                                                    <?php echo $block->escapeHtml($_item->getName()) ?>
+                                                </h3>
+                                            </div>
+                                            <div class="col-lg-4 d-lg-flex align-items-start justify-content-end">
+                                                <p class="price-box">
+                                                    <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item) ?>
+                                                    <span>&#8364;</span>
+                                                </p>
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-text">Inkl. 19% MwSt., zzgl. Versandkosten</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            <?php echo($iterator == count($items)+1) ? '</div>' : '' ?>
+                        <?php endforeach ?>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
