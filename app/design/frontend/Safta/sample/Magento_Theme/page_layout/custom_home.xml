@@ -33,7 +33,9 @@
         <container name="banner" as="banner" label="Banner" htmlTag="section" htmlClass="banner" after="site_header">
             <block class="Magento\Framework\View\Element\Template" name="banner_block" template="Magento_Theme::banner.phtml" />
         </container>
-        <container name="pop.product" as="pop.product" label="Popular products" htmlTag="section" htmlClass="pop-product" after="banner"/>
+        <container name="pop.product" as="pop.product" label="Popular products" htmlTag="section" htmlClass="pop-product" after="banner">
+
+        </container>
         <container name="newsletter" as="newsletter" label="Newsletter" htmlTag="section" htmlClass="newsletter"  after="pop.product"/>
 
         <container name="instagram" as="instagram" label="Instagram" htmlTag="section" htmlClass="instagram" after="newsletter">

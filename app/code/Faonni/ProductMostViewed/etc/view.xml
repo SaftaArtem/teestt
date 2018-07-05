@@ -11,11 +11,10 @@
     <media>
         <images module="Magento_Catalog">
             <image id="most_viewed_products_list" type="small_image">
-                <width>140</width>
-                <height>140</height>
+                <width>413</width>
             </image>
         </images>
-    </media>    
+    </media>
     <vars module="Magento_Catalog">
         <var name="most_viewed_products_list:type">small_image</var>
         <var name="most_viewed_products_list:width">140</var>

@@ -1,0 +1,9 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+
+/** @var \Safta\ViewModel\ViewModel\CmsPagesList $viewModel */
+$viewModel = $block->getData('viewModel');
+?>
+<?php foreach ($viewModel->getItems() as $page): ?>
+    <p><?= $page->getIdentifier() . ' - ' . $page->getTitle();?></p>
+<?php endforeach; ?>
