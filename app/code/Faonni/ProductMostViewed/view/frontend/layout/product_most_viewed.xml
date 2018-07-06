@@ -17,7 +17,7 @@
                 <arguments>
                     <argument name="type" xsi:type="string">most-viewed</argument>
                     <argument name="title" xsi:type="string" translate="true">Most Viewed Products</argument>
-					<argument name="num_products" xsi:type="string">15</argument>
+					<argument name="num_products" xsi:type="string">9</argument>
 					<!-- last 45 days, if 0 - all lifetime -->
 					<argument name="interval" xsi:type="string">45</argument>
                 </arguments>

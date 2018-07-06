@@ -50,11 +50,10 @@ $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VI
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row">
-
                         <?php $iterator = 1 ?>
                         <?php foreach ($items as $_item): ?>
-                            <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<div class="col-md-4 interior">' : '</div><div class="col-md-4 interior">' ?>
-                                <?php /* @escapeNotVerified */ echo '<!-- ' . $image . '-->' ?>
+                        <?php if($iterator == 3 or $iterator == 6):?>
+                                <div class="col-md-4 interior">
                                 <a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product card">
                                     <?php echo $block->getImage($_item, $image)->toHtml() ?>
                                     <div class="card-body">
@@ -81,8 +80,74 @@ $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VI
                                         </div>
                                     </div>
                                 </a>
+                            </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+                            <?php elseif($iterator == 7 ):?>
+                                    <div class="col-md-4 interior">
+                                        <a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product card">
+                                            <?php echo $block->getImage($_item, $image)->toHtml() ?>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <h3 class="card-title">
+                                                            <?php echo $block->escapeHtml($_item->getName()) ?>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="col-lg-4 d-lg-flex align-items-start justify-content-end">
+                                                        <p class="price-box">
+                                                            <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item) ?>
+                                                            <span>&#8364;</span>
+                                                        </p>
+                                                    </div>
+
+
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="card-text">Inkl. 19% MwSt., zzgl. Versandkosten</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div></div>
+                        <?php else: ?>
+                            <div class="col-md-4 interior">
+                            <a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product card">
+                                <?php echo $block->getImage($_item, $image)->toHtml() ?>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <h3 class="card-title">
+                                                <?php echo $block->escapeHtml($_item->getName()) ?>
+                                            </h3>
+                                        </div>
+                                        <div class="col-lg-4 d-lg-flex align-items-start justify-content-end">
+                                            <p class="price-box">
+                                                <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item) ?>
+                                                <span>&#8364;</span>
+                                            </p>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="card-text">Inkl. 19% MwSt., zzgl. Versandkosten</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <?php endif;?>
 
                             <?php echo($iterator == count($items)+1) ? '</div>' : '' ?>
+                            <?php $iterator += 1;?>
                         <?php endforeach ?>
                         </div>
 
