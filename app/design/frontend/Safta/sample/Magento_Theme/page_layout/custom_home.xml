@@ -9,7 +9,7 @@
     <update handle="empty"/>
     <referenceContainer name="root">
 
-        <container name="registration.modal.container" as="registration.modal.container" before="-">
+        <container name="registration.modal.container" as="registration.modal.container" after="login.modal.container">
             <block class="Magento\Framework\View\Element\Js\Components" name="customer_account_create_head_components" template="Magento_Customer::js/components.phtml"/>
             <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Magento_Customer::form/register.phtml">
                 <container name="form.additional.info" as="form_additional_info"/>
@@ -37,8 +37,11 @@
 
         </container>
         <container name="newsletter" as="newsletter" label="Newsletter" htmlTag="section" htmlClass="newsletter"  after="pop.product"/>
+        <container name="collection" as="collection" label="Collection" htmlTag="section" htmlClass="collections" after="newsletter">
+            <block class="Magento\Framework\View\Element\Template" name="collection_block" template="Magento_Theme::collection.phtml" />
+        </container>
 
-        <container name="instagram" as="instagram" label="Instagram" htmlTag="section" htmlClass="instagram" after="newsletter">
+        <container name="instagram" as="instagram" label="Instagram" htmlTag="section" htmlClass="instagram" after="collection">
             <block class="Magento\Framework\View\Element\Template" name="instagram_block" template="Magento_Theme::instagram.phtml" />
         </container>
 
@@ -46,7 +49,7 @@
             <block class="Magento\Framework\View\Element\Template" name="connect_block" template="Magento_Theme::connect.phtml" />
         <container/>
 
-        <container name="site.footer" as="site_footer" label="Site Footer" htmlTag="footer" htmlClass="site-footer" after="connect"/>
+
         <container name="link.default" as="link.default" label="TEst" htmlTag="div" htmlClass="qwe" after="-"/>
 
 

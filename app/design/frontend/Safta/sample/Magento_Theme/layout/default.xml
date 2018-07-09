@@ -7,7 +7,6 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <!--<referenceContainer name="page.wrapper" remove="true"/>-->
         <referenceBlock name="logo">
             <arguments>
                 <argument name="logo_file" xsi:type="string">images/logo.png</argument>
@@ -38,6 +37,7 @@
         <!--<move element="info" destination="ves_header"/>-->
 
         <move element="logo" as="logo" destination="ves_header"/>
+        <move element="breadcrumbs" as="breadcrumbs" destination="ves_header"/>
         <move element="navigation.sections" destination="ves_header" as="catalog.topnav"/>
         <move element="top.search" destination="ves_header"/>
         <move element="sign_link" destination="ves_header"/>
@@ -46,11 +46,16 @@
         <move element="top.links" as="toplinks" destination="link.default"/>
         <move element="authorization-link" as="authorization_link" destination="ves_header"/>
 
+        <move element="copyright" destination="footer.wrapper" after="-"/>
 
 
+        <container name="site.footer" as="site.footer" htmlTag="footer" htmlClass="site-footer">
+            <container name="footer.wrapper" as="footer.wrapper" htmlClass="container-fluid" htmlTag="div">
+                <block class="Magento\Framework\View\Element\Template" name="container.footer" template="Magento_Theme::html/footer_container.phtml"/>
+            </container>
+        </container>
 
-
-
-
+        <referenceContainer name="page.wrapper" remove="true"/>
+        <referenceBlock name="form.subscribe" remove="true"/>
     </body>
 </page>

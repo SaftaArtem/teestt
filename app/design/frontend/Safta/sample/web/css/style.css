@@ -1055,7 +1055,7 @@ button:focus {
 /*collections*/
 
 .collections {
-    background-image: url("../img/collestion-man.png"), url("../img/collestion-woman.png");
+    background-image: url("../images/collestion-man.png"), url("../images/collestion-woman.png");
     background-repeat: no-repeat, no-repeat;
     background-position: 0% 0%, 100% 0%;
     -webkit-background-size: 59%, 76%;
@@ -1399,7 +1399,7 @@ input[type="checkbox"]:checked+label::before {
 /*footer*/
 
 .site-footer {
-    background-image: url("../img/footer-bg-new.png");
+    background-image: url("../images/footer-bg-new.png");
     background-repeat: no-repeat;
     background-position: 0% 45%;
     -webkit-background-size: cover;

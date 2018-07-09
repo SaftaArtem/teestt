@@ -69,7 +69,12 @@
 	</div>
 </div>
 <div class="row search">
-    <?php echo $this->getChildHtml("topSearch"); ?>
+    <div class="col col-xl-10 offset-xl-1">
+        <div class="row crumbs">
+            <?php echo $this->getChildHtml("breadcrumbs"); ?>
+            <?php echo $this->getChildHtml("topSearch"); ?>
+        </div>
+    </div>
 </div>
 
 

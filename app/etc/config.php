@@ -96,7 +96,7 @@ return [
     'Magento_Captcha' => 1,
     'Magento_QuoteAnalytics' => 1,
     'Magento_ReleaseNotification' => 1,
-    'Faonni_ProductMostViewed' => 1,
+    'Faonni_ProductMostViewed' => 0,
     'Magento_RequireJs' => 1,
     'Magento_SendFriend' => 1,
     'Magento_ReviewAnalytics' => 1,
