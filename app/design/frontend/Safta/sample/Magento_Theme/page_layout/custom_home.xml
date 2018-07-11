@@ -9,22 +9,6 @@
     <update handle="empty"/>
     <referenceContainer name="root">
 
-        <container name="registration.modal.container" as="registration.modal.container" after="login.modal.container">
-            <block class="Magento\Framework\View\Element\Js\Components" name="customer_account_create_head_components" template="Magento_Customer::js/components.phtml"/>
-            <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Magento_Customer::form/register.phtml">
-                <container name="form.additional.info" as="form_additional_info"/>
-                <container name="customer.form.register.fields.before" as="form_fields_before" label="Form Fields Before" htmlTag="div" htmlClass="customer-form-before"/>
-            </block>
-            <block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
-                <arguments>
-                    <argument name="triggers" xsi:type="array">
-                        <item name="registerSubmitButton" xsi:type="string">.action.submit</item>
-                    </argument>
-                </arguments>
-            </block>
-            <block class="Magento\Framework\View\Element\Template" name="form_additional_info_customer" template="Magento_Customer::additionalinfocustomer.phtml"/>
-
-        </container>
 
         <container name="site.header" as="site_header" label="Site Header"  htmlTag="header" htmlClass="site-header" after="registration.modal.container">
             <container name="container.fluid" as="container_fluid" label="Header Container" htmlTag="div" htmlClass="container-fluid"/>

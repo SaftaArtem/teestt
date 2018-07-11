@@ -13,13 +13,15 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb sub-menu-list">
                 <?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
-                    <li class="breadcrumb-item">
                     <?php if ($crumbInfo['link']) : ?>
-                        <a href="<?= /* @escapeNotVerified */ $crumbInfo['link'] ?>"><?= $block->escapeHtml($crumbInfo['label']) ?></a>
+                        <li class="breadcrumb-item">
+                            <a href="<?= /* @escapeNotVerified */ $crumbInfo['link'] ?>"><?= $block->escapeHtml($crumbInfo['label']) ?></a>
+                        </li>
                     <?php elseif ($crumbInfo['last']) : ?>
-                        <?= $block->escapeHtml($crumbInfo['label']) ?>
+                        <li class="breadcrumb-item active">
+                            <?= $block->escapeHtml($crumbInfo['label']) ?>
+                        </li>
                     <?php endif; ?>
-                    </li>
                 <?php endforeach; ?>
             </ol>
         </nav>
