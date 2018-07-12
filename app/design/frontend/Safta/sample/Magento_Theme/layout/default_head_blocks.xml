@@ -13,6 +13,7 @@
         <remove src="css/print.css" />
         <remove src="mage/calendar.css" />
         <remove src="requirejs/require.js" />
+
 <!--        <remove src="requirejs/mixins.js" />
         <remove src="requirejs-config.js" />
         <remove src="mage/dataPost.js" />

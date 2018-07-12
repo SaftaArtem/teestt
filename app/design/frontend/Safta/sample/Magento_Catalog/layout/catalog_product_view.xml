@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="mage/gallery/gallery.css"/>
+    </head>
+    <update handle="catalog_product_opengraph" />
+    <update handle="page_calendar"/>
+    <body>
+        <referenceContainer name="root">
+            <container name="product.detail.container" as="product.detail.container" label="Product Detail Container" htmlTag="section" htmlClass="single-prod">
+                <block class="Magento\Framework\View\Element\Template" name="product_detail_container" template="Magento_Theme::product_detail_container.phtml"/>
+
+            </container>
+        </referenceContainer>
+        <move element="page.main.title" as="prod_title" destination="product_detail_container"/>
+        <move element="product.price.final" destination="product_detail_container"/>
+        <move element="product.info.type" destination="product_detail_container"/>
+        <move element="product.info.addtocart" as="adtocard" destination="product_detail_container"/>
+    </body>
+</page>
