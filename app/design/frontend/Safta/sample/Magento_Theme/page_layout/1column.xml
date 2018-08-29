@@ -13,6 +13,6 @@
         </container>
         <container name="banner" as="banner" label="Banner" htmlTag="section" htmlClass="banner" after="site_header"/>
         <container name="site.footer" as="site_footer" label="Site Footer" htmlTag="footer" htmlClass="site-footer" after="connect"/>
-        <container name="link.default" as="link.default" label="TEst" htmlTag="div" htmlClass="qwe" after="-"/>
+        <container name="section.single" as="section_single" htmlClass="section-single" htmlTag="section" after="-"/>
     </referenceContainer>
 </layout>

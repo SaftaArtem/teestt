@@ -13,44 +13,47 @@
                 <argument name="logo_alt" xsi:type="string">logo</argument>
                 <argument name="logo_img_width" xsi:type="string">272</argument>
                 <argument name="logo_img_height" xsi:type="string">29</argument>
-
-
             </arguments>
         </referenceBlock>
 
-
-
-        <referenceBlock name="top.links">
-            <arguments>
-                <argument name="template" xsi:type="string">Magento_Theme::html/account_links.phtml</argument>
-            </arguments>
-        </referenceBlock>
-
-        <referenceContainer name="site.header">
-            <container name="container.fluid" as="container.fluid" htmlClass="container-fluid" htmlTag="div">
-                <block class="Magento\Framework\View\Element\Template" name="ves_header" template="Magento_Theme::html/ves_header.phtml">
+        <referenceContainer name="root">
+            <container name="header_container" as="header_container" label="Header Container" htmlTag="header" htmlClass="site-header" before="-">
+                <block class="Magento\Framework\View\Element\Template" name="custom_header" template="Magento_Theme::html/custom_header.phtml">
                     <block class="Magento\Cms\Block\Block" name="menu-top" as="menutop">
                         <arguments>
                             <argument name="block_id" xsi:type="string">fasony-menutop</argument>
                         </arguments>
                     </block>
+                    <block class="Magento\Store\Block\Switcher" name="store_language_custom" as="store_language_custom" template="switch/languages_custom.phtml" />
+                    <block class="Magento\Directory\Block\Currency" name="currency_custom" before="store_language_custom" template="currency_custom.phtml" />
                 </block>
-
-                <block class="Magento\Framework\View\Element\Template" name="sign-in" template="Magento_Theme::html/sign_in.phtml" before="-">
-                    <block class="Magento\Cms\Block\Block" name="signin-links" as="signinlinks">
-                        <arguments>
-                            <argument name="block_id" xsi:type="string">top-link</argument>
-                        </arguments>
-                    </block>
-                </block>
+            </container>
+            <container name="custom.footer.container" htmlClass="site-footer" htmlTag="footer" after="-">
+                <block class="Magento\Framework\View\Element\Template" name="custom.footer"
+                       template="Magento_Theme::home_static/footer.phtml"/>
             </container>
         </referenceContainer>
 
 
+        <move element="logo" as="logo" destination="custom_header"/>
+        <move element="navigation.sections" destination="custom_header" as="catalog.topnav"/>
+        <move element="top.links" as="toplinks" destination="custom_header"/>
+        <move element="page.main.title" destination="product.info.main" before="-"/>
+        <move element="product.price.final" destination="product.info.main" after="page.main.title"/>
+        <move element="product.info.description" destination="product.info.main" after="-"/>
 
-        <move element="logo" as="logo" destination="ves_header"/>
-        <move element="catalog.topnav" destination="ves_header" as="catalog.topnav"/>
-        <move element="top.links" as="toplinks" destination="sign-in"/>
+
+
+        <!--<move element="breadcrumbs" destination="custom_header"/>-->
+        <referenceContainer name="footer-container" remove="true"/>
+        <referenceContainer name="product.info.price" remove="true"/>
+        <referenceContainer name="product.info.mailto" remove="true"/>
+        <referenceBlock name="product.info.details" remove="true"/>
+
+        <referenceBlock name="category.product.type.details.renderers" remove="true"/>
+        <!--<referenceBlock name="additional" remove="true"/>-->
+
+
 
     </body>
 </page>

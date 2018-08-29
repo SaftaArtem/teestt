@@ -14,148 +14,32 @@ $showCart  = true;
 $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
 ?>
 <?php if ($block->getItems()->getSize()): ?>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-md-10 offset-md-1">
-                <div class="row sub-menu">
-                    <div class="col d-flex justify-content-end">
-                        <ul class="sub-menu-list d-block d-sm-flex justify-content-between">
-                            <li><a href="#">Empfohlen</a></li>
-                            <li><a href="#">Neue artikel</a></li>
-                            <li><a href="#">Reduziert</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <div class="row pager-products">
-                        <div class="col d-flex justify-content-between">
-                            <h3><?php /* @escapeNotVerified */ echo $block->getTitle() ?></h3>
-                            <div class="pop-navigation">
-                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                    <span class="arrow left" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <ol class="carousel-indicators prod">
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">1</li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="1">2</li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="2">3</li>
-                                </ol>
-                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                    <span class="arrow right" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="row">
-                                <?php $iterator = 1 ?>
-                                <?php foreach ($items as $_item): ?>
-                                    <?php if($iterator == 3 or $iterator == 6):?>
-                                            <div class="col-md-4 interior">
-                                                <a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product card">
-                                                    <?php echo $block->getImage($_item, $image)->toHtml() ?>
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col-lg-8">
-                                                                <h3 class="card-title">
-                                                                    <?php echo $block->escapeHtml($_item->getName()) ?>
-                                                                </h3>
-                                                            </div>
-                                                            <div class="col-lg-4 d-lg-flex align-items-start justify-content-end">
-                                                                <p class="price-box">
-                                                                    <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item) ?>
-                                                                    <span>&#8364;</span>
-                                                                </p>
-                                                            </div>
+    <div class="block <?php /* @escapeNotVerified */ echo $class ?>">
+        <div class="block-title title">
+            <h1 class="header-slider"><?php /* @escapeNotVerified */ echo $block->getTitle() ?></h1>
+        </div>
+        <div class="block-content content" aria-labelledby="block-<?php /* @escapeNotVerified */ echo $class ?>-heading">
+            <div class="products wrapper grid products-grid products-<?php /* @escapeNotVerified */ echo $class ?>">
+                <ol class="products list items product-items">
+                    <?php $iterator = 1 ?>
 
-
-
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <p class="card-text">Inkl. 19% MwSt., zzgl. Versandkosten</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
+                    <?php foreach ($items as $_item): ?>
+                        <div class="pr-slide">
+                            <a class="pr-card product" href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" tabindex="0">
+                                <?php echo $block->getImage($_item, $image)->toHtml() ?>
+                                <div class="pr-card-body">
+                                    <div class="pr-head">
+                                        <h3 class="pr-card-title"><?php echo $block->escapeHtml($_item->getName()) ?></h3>
+                                        <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item) ?>
                                     </div>
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                    <?php elseif($iterator == 9 ):?>
-                                                <div class="col-md-4 interior">
-                                                    <a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product card">
-                                                        <?php echo $block->getImage($_item, $image)->toHtml() ?>
-                                                        <div class="card-body">
-                                                            <div class="row">
-                                                                <div class="col-lg-8">
-                                                                    <h3 class="card-title">
-                                                                        <?php echo $block->escapeHtml($_item->getName()) ?>
-                                                                    </h3>
-                                                                </div>
-                                                                <div class="col-lg-4 d-lg-flex align-items-start justify-content-end">
-                                                                    <p class="price-box">
-                                                                        <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item) ?>
-                                                                        <span>&#8364;</span>
-                                                                    </p>
-                                                                </div>
+                                </div>
+                            </a>
+                        </div>
 
+                    <?php endforeach ?>
 
-
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <p class="card-text">Inkl. 19% MwSt., zzgl. Versandkosten</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php break; ?>
-                                    <?php else: ?>
-                                        <div class="col-md-4 interior">
-                                            <a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product card">
-                                                <?php echo $block->getImage($_item, $image)->toHtml() ?>
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-lg-8">
-                                                            <h3 class="card-title">
-                                                                <?php echo $block->escapeHtml($_item->getName()) ?>
-                                                            </h3>
-                                                        </div>
-                                                        <div class="col-lg-4 d-lg-flex align-items-start justify-content-end">
-                                                            <p class="price-box">
-                                                                <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item) ?>
-                                                                <span>&#8364;</span>
-                                                            </p>
-                                                        </div>
-
-
-
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <p class="card-text">Inkl. 19% MwSt., zzgl. Versandkosten</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    <?php endif; ?>
-
-                                <?php $iterator += 1;?>
-                                <?php endforeach ?>
-                    </div>
-
-                </div>
+                </ol>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 <?php endif ?>

@@ -1,0 +1,40 @@
+<?php
+$categories = $this->getStoreCategories(true, false, true);
+$categoryHelper = $this->getCategoryHelper();
+?>
+<div id="sln-filter-default" class="block 5ae879ffe2bd1 block-layered-nav">
+
+    <div class="block-content">
+        <dl id="narrow-by-list" class="sln-nav">
+            <dt filter_code="cat" class="last odd">
+                <span>Category</span>
+                <div class="arrow active"></div>
+            </dt>
+            <dd class="filter-items-cat last odd" filter_code="cat">
+                <ul class="sln-type-cat">
+
+                    <?php
+                    foreach ($categories as $category):
+                        if (!$category->getIsActive()) {
+                            continue;
+                        }
+
+                        ?>
+                        <li>
+                            <a href="<?php echo $categoryHelper->getCategoryUrl($category) ?>"><?php echo $category->getName() ?></a>
+                        </li>
+                        <?php
+                    endforeach;
+                    ?>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+
+<!--
+если обрамить php тэгом можно вывести меню
+<h1>OR</h1>
+echo $this->getHtml()
+-->

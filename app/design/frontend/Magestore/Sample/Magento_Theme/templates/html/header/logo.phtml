@@ -11,7 +11,7 @@
  */
 ?>
 <?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
-<a class="navbar-brand" href="<?= $block->getUrl('') ?>">
+<a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
     <img src="<?= /* @escapeNotVerified */ $block->getLogoSrc() ?>"
          alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
          <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>

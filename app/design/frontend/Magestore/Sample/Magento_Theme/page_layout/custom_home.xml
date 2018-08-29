@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="empty"/>
+    <referenceContainer name="root">
+
+        <container name="home.banner.container" as="home_banner_container" htmlTag="section"
+                   htmlClass="home-banner-container" before="-">
+            <block class="Magento\Framework\View\Element\Template" name="home.banner"
+                   template="Magento_Theme::home_static/banner.phtml"/>
+        </container>
+
+        <container name="pop.product" label="Home Popular container" htmlClass="pop-product" htmlTag="section"
+                   after="home_banner_container">
+            <block class="Faonni\ProductMostViewed\Block\ProductList" name="catalog.product.most.viewed"
+                   template="Faonni_ProductMostViewed::product/list/items.phtml" before="-">
+                <arguments>
+                    <argument name="type" xsi:type="string">most-viewed</argument>
+                    <argument name="title" xsi:type="string" translate="true">Most Viewed Products</argument>
+                    <argument name="num_products" xsi:type="string">9</argument>
+                    <!-- last 45 days, if 0 - all lifetime -->
+                    <argument name="interval" xsi:type="string">45</argument>
+                </arguments>
+                <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="product.most.viewed.addto"
+                       as="addto">
+                    <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+                           name="product.most.viewed.addto.compare" as="compare"
+                           template="Magento_Catalog::product/list/addto/compare.phtml"/>
+                </block>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="home.collection"
+                   template="Magento_Theme::home_static/collection.phtml" after="catalog.product.most.viewed"/>
+            <block class="Magento\Framework\View\Element\Template" name="home.instagram"
+                   template="Magento_Theme::home_static/instagram.phtml" after="form.subscribe"/>
+        </container>
+        <container name="home.connect.container" htmlTag="section" htmlClass="connect" after="pop.product">
+            <block class="Magento\Framework\View\Element\Template" name="home.connect"
+                   template="Magento_Theme::home_static/connect.phtml"/>
+        </container>
+
+    </referenceContainer>
+
+
+    <move element="form.subscribe" destination="pop.product" after="home.collection"/>
+    <referenceContainer name="page.wrapper" remove="true"/>
+</layout>

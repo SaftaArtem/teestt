@@ -1,0 +1,46 @@
+{
+  "142": {
+    "167": {
+      "type": "0",
+      "value": "XS",
+      "label": "XS"
+    },
+    "168": {
+      "type": "0",
+      "value": "S",
+      "label": "S"
+    },
+    "169": {
+      "type": "0",
+      "value": "M",
+      "label": "M"
+    },
+    "170": {
+      "type": "0",
+      "value": "L",
+      "label": "L"
+    },
+    "171": {
+      "type": "0",
+      "value": "XL",
+      "label": "XL"
+    }
+  },
+  "93": {
+    "56": {
+      "type": "1",
+      "value": "#eb6703",
+      "label": "Orange"
+    },
+    "58": {
+      "type": "1",
+      "value": "#ff0000",
+      "label": "Red"
+    },
+    "60": {
+      "type": "1",
+      "value": "#ffd500",
+      "label": "Yellow"
+    }
+  }
+}

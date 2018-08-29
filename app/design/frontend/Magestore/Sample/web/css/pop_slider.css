@@ -1,0 +1,58 @@
+.most-viewed {
+    width: 83.3333333%;
+    margin: auto;
+}
+.pr-card.product {
+    background: #e7e8ed;
+    height: 100% !important;
+    display: block;
+    border: 1px solid #e7e8ed;
+}
+.pop-product .slick-slide img {
+    width: 100%;
+    background: #fff;
+}
+h1.header-slider {
+    color: #aaa;
+}
+.product .pr-card-body {
+    width: 100%;
+    background: #e7e8ed;
+    padding: 1vw;
+    overflow: hidden;
+    height: 10vw;
+    box-sizing: border-box;
+}
+.product .pr-card-body .pr-head {
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+}
+.pr-card-title {
+    margin-bottom: .75rem;
+    float: left;
+    width: 60%;
+    text-transform: uppercase;
+    font-weight: lighter;
+    font-family: "avantGardeLT-Book";
+    color: #292a2e;
+    margin-top: 0;
+    font-size: 1.4vw;
+}
+div.pr-head div.price-box span.normal-price span.price-container span.price-wrapper span.price,
+div.pr-head div.price-box span.price-container .price-wrapper .price {
+    font-weight: bold;
+    margin-bottom: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    line-height: unset;
+    color: #292a2e;
+    font-size: 2vw;
+}
+.slick-slide {
+    padding: 0 15px !important;
+}
+.slick-track {
+    margin: 0 -15px !important;
+}
