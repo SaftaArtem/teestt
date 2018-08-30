@@ -9,8 +9,7 @@
 namespace Safta\SFT\Controller\Sandbox;
 
 use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
-use Safta\SFT\Model\SampleFactory;
+use Magento\Framework\Controller\ResultFactory;
 
 /**
  * Class Index
@@ -19,34 +18,16 @@ use Safta\SFT\Model\SampleFactory;
 class Index extends Action
 {
     /**
-     * @var \Safta\SFT\Model\SampleFactory
+     * Default hello page with layout
+     *
+     * @return void
      */
-    protected $_modelSampleFactory;
-
-    /**
-     * @param Context $context
-     * @param SampleFactory $modelSampleFactory
-     */
-    public function __construct(
-        Context $context,
-        SampleFactory $modelSampleFactory
-    ) {
-        parent::__construct($context);
-        $this->_modelSampleFactory = $modelSampleFactory;
-    }
-
     public function execute()
     {
-        $sampleModel = $this->_modelSampleFactory->create();
 
-        // Load the item with ID is 1
-        $item = $sampleModel->load(1);
-        var_dump($item->getData());
-
-        // Get sample collection
-        $sampleCollection = $sampleModel->getCollection();
-        // Load all data of collection
-        var_dump($sampleCollection->getData());
+        /** @var \Magento\Framework\View\Result\Page $page */
+        $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+        return $page;
     }
 
 }
