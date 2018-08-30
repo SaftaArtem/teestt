@@ -5,6 +5,7 @@ return [
     'Magento_Store' => 1,
     'Magento_Directory' => 1,
     'Magento_Eav' => 1,
+    'Clounce_DisplayHello' => 1,
     'Coolryan_PreferenceExample' => 0,
     'Devchanel_HelloWorld' => 0,
     'Magento_Backend' => 1,
