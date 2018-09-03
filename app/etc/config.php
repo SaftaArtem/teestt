@@ -165,6 +165,7 @@ return [
     'Safta_Plgn' => 0,
     'Safta_PopProducts' => 0,
     'Safta_SFT' => 1,
+    'Safta_SFTmenu' => 1,
     'Safta_Sample' => 0,
     'Safta_ViewModel' => 0,
     'Shopial_Facebook' => 1,

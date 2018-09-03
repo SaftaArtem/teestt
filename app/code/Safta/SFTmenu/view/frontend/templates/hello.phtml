@@ -1,0 +1,60 @@
+<?php
+$categories = $block->getCategoryCollection()->toArray();
+//echo '<pre>';
+//print_r($categories);
+//echo '<pre>';
+
+function isParent($id, $categories){
+    $t = '';
+    foreach ($categories as $item) {
+        if($item['parent_id'] == $id) {
+            $t = true;
+            break;
+        }
+    }
+    if($t == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+$masive = array();
+foreach ($categories as $item) {
+    if($item["level"] == 2) {
+        $masive[1][] = $item;
+    } elseif ($item["level"] == 3) {
+        $masive[2][] = $item;
+    }
+    elseif ($item["level"] == 4) {
+        $masive[3][] = $item;
+    }
+}
+$arr = array();
+foreach ($masive[1] as $item) {
+    if(isParent($item['entity_id'], $categories)) {
+        $arr[$item['entity_id']] = array();
+        foreach ($masive[2] as $sitem) {
+            if($sitem['parent_id'] == $item['entity_id']) {
+                if (isParent($sitem['entity_id'], $categories)){
+                    $arr[$item['entity_id']][$sitem['entity_id']] = array();
+                    foreach ($masive[3] as $aritem) {
+                        if($aritem['parent_id'] == $sitem['entity_id']) {
+                            if (isParent($aritem['entity_id'], $categories)){
+                                $arr[$item['entity_id']][$sitem['entity_id']][$aritem['entity_id']] = array();
+                            } else {
+                                $arr[$item['entity_id']][$sitem['entity_id']][$aritem['entity_id']] = false;
+                            }
+                        }
+                    }
+                } else {
+                    $arr[$item['entity_id']][$sitem['entity_id']] = false;
+                }
+            }
+        }
+    } else {
+        $arr[$item['entity_id']] = false;
+    }
+}
+var_dump($arr);
+?>

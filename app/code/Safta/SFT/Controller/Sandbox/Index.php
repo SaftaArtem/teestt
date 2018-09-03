@@ -13,7 +13,7 @@ use Magento\Framework\Controller\ResultFactory;
 
 /**
  * Class Index
- * @package Safta\SFT\Controller\Frontend
+ * @package Safta\SFTmenu\Controller\Frontend
  */
 class Index extends Action
 {
