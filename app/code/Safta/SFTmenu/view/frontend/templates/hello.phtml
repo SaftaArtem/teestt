@@ -19,6 +19,44 @@ function isParent($id, $categories){
     }
 }
 
+function max_depth($arr) {
+    $max_depth = 0;
+    foreach ($arr as $item) {
+        if($item['level'] > $max_depth) {
+            $max_depth = $item['level'];
+        }
+    }
+    return $max_depth;
+}
+
+function separateArrayByLevels($arr) {
+    $sepparate_array = array();
+    $max_depth = max_depth($arr);
+    for ($i = 2; $i <= $max_depth; $i++) {
+        foreach ($arr as $item) {
+            if($item['level'] == $i) {
+                if($i == 2) {
+                    $sepparate_array[$i][$item['position']-1] = $item;
+                } else {
+                    $sepparate_array[$i][] = $item;
+                }
+            }
+        }
+    }
+    return $sepparate_array;
+}
+$sepparated_array = separateArrayByLevels($categories);
+ksort($sepparated_array[2]);
+
+
+function createLevelShema($separ_arr) {
+    for ($i = 2; $i <= count($separ_arr); $i++) {
+        echo $i.'<br>';
+    }
+}
+createLevelShema($sepparated_array);
+
+
 $masive = array();
 foreach ($categories as $item) {
     if($item["level"] == 2) {
@@ -43,28 +81,28 @@ foreach ($masive[1] as $item) {
                             if (isParent($aritem['entity_id'], $categories)){
                                 $arr[$item['entity_id']][$sitem['entity_id']][$aritem['entity_id']] = array();
                             } else {
-                                $arr[$item['entity_id']][$sitem['entity_id']][$aritem['entity_id']] = false;
+                                $arr[$item['entity_id']][$sitem['entity_id']][$aritem['entity_id']] = null;
                             }
                         }
                     }
                 } else {
-                    $arr[$item['entity_id']][$sitem['entity_id']] = false;
+                    $arr[$item['entity_id']][$sitem['entity_id']] = null;
                 }
             }
         }
     } else {
-        $arr[$item['entity_id']] = false;
+        $arr[$item['entity_id']] = null;
     }
 }
 $html = '';
 foreach ($arr as $key=> $value){
-    if(!$value == false){
+    if(!$value == null){
         $html .= '<li>'.$categories[$key]["name"].'</li><ul>';
         foreach ($value as $sub_key => $sub_value) {
-            if (!$sub_value == false) {
+            if (!$sub_value == null) {
                 $html .= '<li>'.$categories[$sub_key]['name'].'</li><ul>';
                 foreach ($sub_value as $sub_sub_key=>$sub_sub_value){
-                    if(!$sub_sub_value == false) {
+                    if(!$sub_sub_value == null) {
                         $html .= '<li>'.$categories[$sub_sub_key]['name'].'</li><ul>';
                         foreach ($sub_sub_value as $sss_key=>$sss_value) {
                             echo '+++';
@@ -85,5 +123,5 @@ foreach ($arr as $key=> $value){
     }
 }
 $html .= '</ul>';
-echo $html;
+//echo $html;
 ?>
