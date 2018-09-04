@@ -1,133 +1,124 @@
 <?php
 $categories = $block->getCategoryCollection()->toArray();
+
+
 //echo '<pre>';
 //print_r($categories);
 //echo '<pre>';
 
-function isParent($id, $categories){
-    $t = '';
-    foreach ($categories as $item) {
-        if($item['parent_id'] == $id) {
-            $t = true;
-            break;
-        }
-    }
-    if($t == true) {
-        return true;
-    } else {
-        return false;
+unset($categories[2]);
+
+
+
+foreach ($categories as &$cat)
+    $cat['children'] = array();
+
+
+foreach ($categories as $key=>$item) {
+    if($item['include_in_menu'] == 0) {
+        unset($categories[$key]);
     }
 }
 
-function max_depth($arr) {
-    $max_depth = 0;
-    foreach ($arr as $item) {
-        if($item['level'] > $max_depth) {
-            $max_depth = $item['level'];
-        }
-    }
-    return $max_depth;
+foreach ($categories as $id => &$cat)
+{
+    if ($cat['parent_id'] != 2)
+        $categories[$cat['parent_id']]['children'][$id] = &$cat;
 }
-$max_depth = max_depth($categories);
-function separateArrayByLevels($arr) {
-    $sepparate_array = array();
-    $max_depth = max_depth($arr);
-    for ($i = 2; $i <= $max_depth; $i++) {
-        foreach ($arr as $item) {
-            if($item['level'] == $i) {
-                if($i == 2) {
-                    $sepparate_array[$i][$item['position']-1] = $item;
-                } else {
-                    $sepparate_array[$i][] = $item;
-                }
-            }
-        }
-    }
-    return $sepparate_array;
-}
-$sepparated_array = separateArrayByLevels($categories);
-ksort($sepparated_array[2]);
 
-function createArraySchema($layer, $categories) {
-    $arr = array();
-    foreach ($layer as $item) {
-        if(isParent($item['entity_id'], $categories)){
-            $arr[$item['entity_id']] = array();
-
-        } else {
-            $arr[$item['entity_id']] = null;
-        }
-    }
-    return($arr);
+// Remove children from $menuItems so only top level items remain
+foreach (array_keys($categories) as $id)
+{
+    if ($categories[$id]['parent_id'] != 2)
+        unset($categories[$id]);
 }
-var_dump(createArraySchema($sepparated_array[2], $categories));
+
+echo '<pre>';
+print_r($categories);
+echo '<pre>';
 
 
-$masive = array();
-foreach ($categories as $item) {
-    if($item["level"] == 2) {
-        $masive[1][] = $item;
-    } elseif ($item["level"] == 3) {
-        $masive[2][] = $item;
-    }
-    elseif ($item["level"] == 4) {
-        $masive[3][] = $item;
-    }
-}
-$arr = array();
-foreach ($masive[1] as $item) {
-    if(isParent($item['entity_id'], $categories)) {
-        $arr[$item['entity_id']] = array();
-        foreach ($masive[2] as $sitem) {
-            if($sitem['parent_id'] == $item['entity_id']) {
-                if (isParent($sitem['entity_id'], $categories)){
-                    $arr[$item['entity_id']][$sitem['entity_id']] = array();
-                    foreach ($masive[3] as $aritem) {
-                        if($aritem['parent_id'] == $sitem['entity_id']) {
-                            if (isParent($aritem['entity_id'], $categories)){
-                                $arr[$item['entity_id']][$sitem['entity_id']][$aritem['entity_id']] = array();
-                            } else {
-                                $arr[$item['entity_id']][$sitem['entity_id']][$aritem['entity_id']] = null;
-                            }
-                        }
-                    }
-                } else {
-                    $arr[$item['entity_id']][$sitem['entity_id']] = null;
-                }
-            }
-        }
-    } else {
-        $arr[$item['entity_id']] = null;
-    }
-}
-$html = '';
-foreach ($arr as $key=> $value){
-    if(!$value == null){
-        $html .= '<li>'.$categories[$key]["name"].'</li><ul>';
-        foreach ($value as $sub_key => $sub_value) {
-            if (!$sub_value == null) {
-                $html .= '<li>'.$categories[$sub_key]['name'].'</li><ul>';
-                foreach ($sub_value as $sub_sub_key=>$sub_sub_value){
-                    if(!$sub_sub_value == null) {
-                        $html .= '<li>'.$categories[$sub_sub_key]['name'].'</li><ul>';
-                        foreach ($sub_sub_value as $sss_key=>$sss_value) {
-                            echo '+++';
-                        }
-                        $html .= '</ul>';
-                    } else {
-                        $html .= '<li>'.$categories[$sub_sub_key]['name'].'</li>';
-                    }
-                }
-                $html .= '</ul>';
-            } else {
-                $html .= '<li>'.$categories[$sub_key]['name'].'</li>';
-            }
-        }
-        $html .= '</ul>';
-    } else {
-        $html .= '<li>'.$categories[$key]["name"].'</li>';
-    }
-}
-$html .= '</ul>';
+
+//$html = '';
+//foreach ($arr as $key=> $value){
+//    if(!$value == null){
+//        $html .= '<li>'.$categories[$key]["name"].'</li><ul>';
+//        foreach ($value as $sub_key => $sub_value) {
+//            if (!$sub_value == null) {
+//                $html .= '<li>'.$categories[$sub_key]['name'].'</li><ul>';
+//                foreach ($sub_value as $sub_sub_key=>$sub_sub_value){
+//                    if(!$sub_sub_value == null) {
+//                        $html .= '<li>'.$categories[$sub_sub_key]['name'].'</li><ul>';
+//                        foreach ($sub_sub_value as $sss_key=>$sss_value) {
+//                            echo '+++';
+//                        }
+//                        $html .= '</ul>';
+//                    } else {
+//                        $html .= '<li>'.$categories[$sub_sub_key]['name'].'</li>';
+//                    }
+//                }
+//                $html .= '</ul>';
+//            } else {
+//                $html .= '<li>'.$categories[$sub_key]['name'].'</li>';
+//            }
+//        }
+//        $html .= '</ul>';
+//    } else {
+//        $html .= '<li>'.$categories[$key]["name"].'</li>';
+//    }
+//}
+//$html .= '</ul>';
 //echo $html;
+
+
+
+$menuItems = array
+(
+    1 => array(
+        'ItemText' => 'Home',
+        'ItemLink' => 'index.php',
+        'ParentID' => null,
+    ),
+
+    2 => array(
+        'ItemText' => 'Home Sub 1',
+        'ItemLink' => 'somepage.php',
+        'ParentID' => 1,
+    ),
+
+    3 => array(
+        'ItemText' => 'Home Sub 2',
+        'ItemLink' => 'somepage2.php',
+        'ParentID' => 1,
+    ),
+
+    4 => array(
+        'ItemText' => 'Contact',
+        'ItemLink' => 'contact.php',
+        'ParentID' => null,
+    ),
+);
+
+// Each node starts with 0 children
+foreach ($menuItems as &$menuItem)
+    $menuItem['Children'] = array();
+
+// If menu item has ParentID, add it to parent Children array
+foreach ($menuItems as $ID => &$menuItem)
+{
+    if ($menuItem['ParentID'] != null)
+        $menuItems[$menuItem['ParentID']]['Children'][$ID] = &$menuItem;
+}
+
+// Remove children from $menuItems so only top level items remain
+foreach (array_keys($menuItems) as $ID)
+{
+    if ($menuItems[$ID]['ParentID'] != null)
+        unset($menuItems[$ID]);
+}
+
+//echo '<pre>';
+//print_r($menuItems);
+//echo '<pre>';
 ?>
+
