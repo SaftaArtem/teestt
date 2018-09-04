@@ -28,7 +28,7 @@ function max_depth($arr) {
     }
     return $max_depth;
 }
-
+$max_depth = max_depth($categories);
 function separateArrayByLevels($arr) {
     $sepparate_array = array();
     $max_depth = max_depth($arr);
@@ -48,13 +48,19 @@ function separateArrayByLevels($arr) {
 $sepparated_array = separateArrayByLevels($categories);
 ksort($sepparated_array[2]);
 
+function createArraySchema($layer, $categories) {
+    $arr = array();
+    foreach ($layer as $item) {
+        if(isParent($item['entity_id'], $categories)){
+            $arr[$item['entity_id']] = array();
 
-function createLevelShema($separ_arr) {
-    for ($i = 2; $i <= count($separ_arr); $i++) {
-        echo $i.'<br>';
+        } else {
+            $arr[$item['entity_id']] = null;
+        }
     }
+    return($arr);
 }
-createLevelShema($sepparated_array);
+var_dump(createArraySchema($sepparated_array[2], $categories));
 
 
 $masive = array();
