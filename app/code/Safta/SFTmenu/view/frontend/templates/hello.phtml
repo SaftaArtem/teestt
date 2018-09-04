@@ -56,5 +56,34 @@ foreach ($masive[1] as $item) {
         $arr[$item['entity_id']] = false;
     }
 }
-var_dump($arr);
+$html = '';
+foreach ($arr as $key=> $value){
+    if(!$value == false){
+        $html .= '<li>'.$categories[$key]["name"].'</li><ul>';
+        foreach ($value as $sub_key => $sub_value) {
+            if (!$sub_value == false) {
+                $html .= '<li>'.$categories[$sub_key]['name'].'</li><ul>';
+                foreach ($sub_value as $sub_sub_key=>$sub_sub_value){
+                    if(!$sub_sub_value == false) {
+                        $html .= '<li>'.$categories[$sub_sub_key]['name'].'</li><ul>';
+                        foreach ($sub_sub_value as $sss_key=>$sss_value) {
+                            echo '+++';
+                        }
+                        $html .= '</ul>';
+                    } else {
+                        $html .= '<li>'.$categories[$sub_sub_key]['name'].'</li>';
+                    }
+                }
+                $html .= '</ul>';
+            } else {
+                $html .= '<li>'.$categories[$sub_key]['name'].'</li>';
+            }
+        }
+        $html .= '</ul>';
+    } else {
+        $html .= '<li>'.$categories[$key]["name"].'</li>';
+    }
+}
+$html .= '</ul>';
+echo $html;
 ?>
