@@ -1,10 +1,22 @@
 <?php
 $categories = $block->getCategoryCollection()->toArray();
 
-
 unset($categories[2]);
 
-
+function isParent($id, $categories){
+    $t = '';
+    foreach ($categories as $item) {
+        if($item['parent_id'] == $id) {
+            $t = true;
+            break;
+        }
+    }
+    if($t == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 foreach ($categories as &$cat)
     $cat['children'] = array();
@@ -28,40 +40,52 @@ foreach (array_keys($categories) as $id)
         unset($categories[$id]);
 }
 
+$collection = array();
+foreach ($categories as $item)
+    $collection[$item['position']] = $item;
+
+ksort($collection);
 
 
-//
-//$html = '';
-//foreach ($categories as $key=> $value){
-//    if(!$value == null){
-//        $html .= '<li>'.$categories[$key]["name"].'</li><ul>';
-//        foreach ($value as $sub_key => $sub_value) {
-//            if (!$sub_value == null) {
-//                $html .= '<li>'.$categories[$sub_key]['name'].'</li><ul>';
-//                foreach ($sub_value as $sub_sub_key=>$sub_sub_value){
-//                    if(!$sub_sub_value == null) {
-//                        $html .= '<li>'.$categories[$sub_sub_key]['name'].'</li><ul>';
-//                        foreach ($sub_sub_value as $sss_key=>$sss_value) {
-//                            echo '+++';
-//                        }
-//                        $html .= '</ul>';
-//                    } else {
-//                        $html .= '<li>'.$categories[$sub_sub_key]['name'].'</li>';
-//                    }
-//                }
-//                $html .= '</ul>';
-//            } else {
-//                $html .= '<li>'.$categories[$sub_key]['name'].'</li>';
-//            }
-//        }
-//        $html .= '</ul>';
-//    } else {
-//        $html .= '<li>'.$categories[$key]["name"].'</li>';
-//    }
-//}
-//$html .= '</ul>';
-//echo $html;
+function output($arr)
+{
+    $string = "<ul>";
+    foreach ($arr as $key => $value) {
+        $string .= "<li>";
+        $string .= $value['name'];
+        if (count($value['children'])) {
+            $string .= output($value['children']);
+        }
+        $string .= "</li>";
+    }
+    $string .= "</ul>";
+    return $string;
+}
+
+echo output($collection);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ?>
+
 
