@@ -1,6 +1,5 @@
 <?php
-
-namespace Pulsestorm\ToDoCrud\Setup;
+namespace Safta\ToDoCrud\Setup;
 class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 {
     public function install(\Magento\Framework\Setup\SchemaSetupInterface $setup, \Magento\Framework\Setup\ModuleContextInterface $context)
@@ -9,7 +8,8 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
         $installer->startSetup();
         //START: install stuff
         //END:   install stuff
-
+        
+        //START table setup
         $table = $installer->getConnection()->newTable(
             $installer->getTable('pulsestorm_todocrud_todoitem')
         )->addColumn(
@@ -60,8 +60,8 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             ),
             'Is Active'
         );
-
-        //...
         $installer->getConnection()->createTable($table);
+        //END   table setup
+$installer->endSetup();
     }
 }
