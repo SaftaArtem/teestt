@@ -2,7 +2,7 @@
 namespace Safta\ListCustomers\Api;
 
 
-interface GetCustomerListInterface
+interface CustomerInterface
 {
     /**
      * Returns greeting message to user

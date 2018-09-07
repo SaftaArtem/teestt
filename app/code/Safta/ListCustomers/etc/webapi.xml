@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
-    <route url="/V1/get_all" method="GET">
-        <service class="Safta\ListCustomers\Api\GetCustomerListInterface" method="name"/>
+    <route url="/V1/get" method="GET">
+        <service class="Safta\ListCustomers\Api\CustomerInterface" method="name"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>

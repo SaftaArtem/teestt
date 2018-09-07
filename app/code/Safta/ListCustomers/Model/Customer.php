@@ -8,9 +8,9 @@
 
 namespace Safta\ListCustomers\Model;
 
-use Safta\ListCustomers\Api\GetCustomerListInterface;
+use Safta\ListCustomers\Api\CustomerInterface;
 
-class GetCustomerList implements GetCustomerListInterface
+class Customer implements CustomerInterface
 {
     public function name() {
         return 'First Api';
