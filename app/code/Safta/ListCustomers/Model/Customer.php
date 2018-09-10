@@ -2,17 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: artem
- * Date: 06.09.18
- * Time: 17:28
+ * Date: 29.08.18
+ * Time: 17:24
  */
 
 namespace Safta\ListCustomers\Model;
 
-use Safta\ListCustomers\Api\CustomerInterface;
+use Magento\Framework\Model\AbstractModel;
 
-class Customer implements CustomerInterface
+
+class Customer extends AbstractModel
 {
-    public function name() {
-        return 'First Api';
+    protected function _construct()
+    {
+        $this->_init('Safta\ListCustomers\Model\ResourceModel\Customer');
     }
 }

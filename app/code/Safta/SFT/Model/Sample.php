@@ -15,6 +15,6 @@ class Sample extends AbstractModel
 {
     protected function _construct()
     {
-        $this->_init('Safta\SFT\Model\ResourceModel\Sample');
+        $this->_init('Safta\SFT\Model\ResourceModel\Customer');
     }
 }
