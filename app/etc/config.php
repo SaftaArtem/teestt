@@ -166,6 +166,7 @@ return [
     'Safta_ListCustomers' => 1,
     'Safta_Plgn' => 0,
     'Safta_PopProducts' => 0,
+    'Safta_Prepare' => 1,
     'Safta_SFT' => 1,
     'Safta_SFTmenu' => 1,
     'Safta_Sample' => 0,
